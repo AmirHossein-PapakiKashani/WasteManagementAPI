@@ -13,7 +13,11 @@
         
         //navigation property
         public Contractor Contractor { get; set; } = null!;
-
-
+        
+        //FK
+        public int SupervisorId { get; set; }
+        
+        // nav prop
+        public Supervisor Supervisor { get; set; } = null!;
     }
 }

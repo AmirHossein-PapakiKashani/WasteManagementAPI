@@ -2,7 +2,7 @@
 {
     public class Employee
     {
-        public Employee() => Citizens = new HashSet<Citizen>();
+        public Employee() => Contractors = new HashSet<Contractor>();
        
         public int EmployeeId { get; set; }
 
@@ -10,6 +10,6 @@
 
         public string Family { get; set; } = string.Empty;
 
-        public ICollection<Citizen> Citizens { get; set; } = null!;
+        public ICollection<Contractor> Contractors { get; set; } 
     }
 }

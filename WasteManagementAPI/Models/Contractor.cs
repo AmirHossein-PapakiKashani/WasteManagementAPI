@@ -15,6 +15,6 @@
         //navigation propertiy
         public Employee Employee { get; set; } = null!;
 
-        public ICollection<Municipality> Municipality { get; set;} = null!;
+        public ICollection<Municipality> Municipality { get; set;} 
     }
 }

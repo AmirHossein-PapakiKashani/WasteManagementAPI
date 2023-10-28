@@ -10,6 +10,6 @@
 
         public float Weight { get; set; }
 
-        public ICollection<Citizen> Citizens { get; set; } = new List<Citizen>();
+        public ICollection<Citizen> Citizens { get; set; } 
     }
 }
