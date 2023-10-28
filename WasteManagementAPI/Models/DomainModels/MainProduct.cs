@@ -4,9 +4,9 @@
     {
         public int MainProductId { get; set; }
 
-        public string Name { get; set; }
+        public string Name { get; set; } = string.Empty;
 
-        public int ProductId { get; set; }
+      
 
         public UserProduct UserProduct { get; set; } = null!;
 

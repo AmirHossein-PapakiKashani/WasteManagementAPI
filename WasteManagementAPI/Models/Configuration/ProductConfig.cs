@@ -3,9 +3,9 @@ using WasteManagementAPI.Models.DomainModels;
 
 namespace WasteManagementAPI.Models.Configuration
 {
-    public class ProductConfig : IEntityTypeConfiguration<UserProduct>
+    public class ProductConfig : IEntityTypeConfiguration<MainProduct>
     {
-        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<UserProduct> builder)
+        public void Configure(Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder<MainProduct> builder)
         {
             builder.HasData
                 (

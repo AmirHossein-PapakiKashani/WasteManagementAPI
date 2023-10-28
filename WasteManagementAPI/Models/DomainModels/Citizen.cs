@@ -12,9 +12,9 @@
         public int? Score { get; set; }
 
         //FK
-        public int ProductId { get; set; }
+        public int UserProductId { get; set; }
         //Navigation property
-        public UserProduct Product { get; set; } = null!;
+        public UserProduct UserProduct { get; set; } = null!;
 
         //FK
         public int ID { get; set; }

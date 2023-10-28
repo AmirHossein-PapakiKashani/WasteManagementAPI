@@ -21,7 +21,9 @@ namespace WasteManagementAPI.Models
 
         public DbSet<Supervisor> Supervisor { get; set; }
 
-        public DbSet<UserProduct> Products { get; set; }
+        public DbSet<UserProduct> UserProducts { get; set; }
+
+        public DbSet<MainProduct> MainProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
