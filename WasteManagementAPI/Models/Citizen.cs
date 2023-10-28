@@ -10,5 +10,12 @@
         public string Family { get; set; } = string.Empty;
 
         public int? Score { get; set; }
+
+        //FK
+        public int  ProductId { get; set; }
+        //Navigation property
+        public Product Product { get; set; } = null!;
+
+
     }
 }
