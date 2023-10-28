@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using WasteManagementAPI.Models;
+using WasteManagementAPI.Models.Configuration;
 using WasteManagementAPI.Models.DomainModels;
 
 namespace WasteManagementAPI.Models
@@ -20,7 +21,12 @@ namespace WasteManagementAPI.Models
 
         public DbSet<Supervisor> Supervisor { get; set; }
 
-        public DbSet<UserProduct> Products { get; set; }    
+        public DbSet<UserProduct> Products { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new ProductConfig());
+        }
 
     }
 }
