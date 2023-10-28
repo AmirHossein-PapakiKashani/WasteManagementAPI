@@ -16,11 +16,6 @@
         //Navigation property
         public UserProduct UserProduct { get; set; } = null!;
 
-        //FK
-        public int ID { get; set; }
-
-        //navigation property
-        public SumOfWeghitOfProducts SumOfWeghitOfProducts { get; set; } = null!;
-
+   
     }
 }

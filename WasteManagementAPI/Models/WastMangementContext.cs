@@ -17,7 +17,6 @@ namespace WasteManagementAPI.Models
 
         public DbSet<Municipality> Municipality { get; set;}
 
-        public DbSet<SumOfWeghitOfProducts> SumOfWeghitOfProducts { get; set; }
 
         public DbSet<Supervisor> Supervisor { get; set; }
 
