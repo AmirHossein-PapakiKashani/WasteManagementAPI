@@ -1,4 +1,4 @@
-﻿namespace WasteManagementAPI.Models
+﻿  namespace WasteManagementAPI.Models
 {
     public class Product
     {
@@ -8,7 +8,7 @@
 
         public string Name { get; set; } = string.Empty;
 
-        public int Weight { get; set; }
+        public float Weight { get; set; }
 
         public ICollection<Citizen> Citizens { get; set; } = new List<Citizen>();
     }
