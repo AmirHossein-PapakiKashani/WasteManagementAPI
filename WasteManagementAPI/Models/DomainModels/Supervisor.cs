@@ -1,4 +1,4 @@
-﻿namespace WasteManagementAPI.Models
+﻿namespace WasteManagementAPI.Models.DomainModels
 {
     public class Supervisor
     {
@@ -10,7 +10,7 @@
 
         public bool IsOk { get; set; }
 
-        public ICollection<Municipality> Municipality { get; set;} 
+        public ICollection<Municipality> Municipality { get; set; }
 
     }
 }

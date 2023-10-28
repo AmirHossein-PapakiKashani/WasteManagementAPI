@@ -1,4 +1,4 @@
-﻿namespace WasteManagementAPI.Models
+﻿namespace WasteManagementAPI.Models.DomainModels
 {
     public class Contractor
     {
@@ -15,6 +15,6 @@
         //navigation propertiy
         public Employee Employee { get; set; } = null!;
 
-        public ICollection<Municipality> Municipality { get; set;} 
+        public ICollection<Municipality> Municipality { get; set; }
     }
 }

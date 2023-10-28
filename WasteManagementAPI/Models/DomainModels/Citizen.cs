@@ -1,10 +1,10 @@
-﻿namespace WasteManagementAPI.Models
+﻿namespace WasteManagementAPI.Models.DomainModels
 {
     public class Citizen
     {
-          
+
         public int CitizenId { get; set; }
-        
+
         public string Name { get; set; } = string.Empty;
 
         public string Family { get; set; } = string.Empty;
@@ -12,7 +12,7 @@
         public int? Score { get; set; }
 
         //FK
-        public int  ProductId { get; set; }
+        public int ProductId { get; set; }
         //Navigation property
         public Product Product { get; set; } = null!;
 

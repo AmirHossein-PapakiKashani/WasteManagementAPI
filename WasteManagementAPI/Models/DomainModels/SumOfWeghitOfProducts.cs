@@ -1,11 +1,11 @@
-﻿namespace WasteManagementAPI.Models
+﻿namespace WasteManagementAPI.Models.DomainModels
 {
     public class SumOfWeghitOfProducts
     {
         public int ID { get; set; }
 
         public int SumOfProducts { get; set; }
-        
+
         //FK
         public int CitizenId { get; set; }
 
