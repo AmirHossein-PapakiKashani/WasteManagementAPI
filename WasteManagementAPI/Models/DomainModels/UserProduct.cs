@@ -1,8 +1,8 @@
 ﻿namespace WasteManagementAPI.Models.DomainModels
 {
-    public class Product
+    public class UserProduct
     {
-        public Product() => Citizens = new HashSet<Citizen>();
+        public UserProduct() => Citizens = new HashSet<Citizen>();
 
         public int ProductId { get; set; }
 

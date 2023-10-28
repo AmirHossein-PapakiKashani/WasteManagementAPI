@@ -14,7 +14,7 @@
         //FK
         public int ProductId { get; set; }
         //Navigation property
-        public Product Product { get; set; } = null!;
+        public UserProduct Product { get; set; } = null!;
 
         //FK
         public int ID { get; set; }
