@@ -7,15 +7,12 @@
 
         public string Name { get; set; } = string.Empty;
 
-        public string Family { get; set; } = string.Empty;
+        public int  Points { get; set; }
 
-        public int? Score { get; set; }
+        public string UserName { get; set; } = string.Empty;
 
-        //FK
-        public int UserProductId { get; set; }
-        //Navigation property
-        public UserProduct UserProduct { get; set; } = null!;
+        public string Password { get; set; }    = string.Empty;
 
-   
+
     }
 }
