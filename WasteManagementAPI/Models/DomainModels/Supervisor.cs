@@ -8,7 +8,6 @@
 
         public string Name { get; set; } = string.Empty;
 
-        public bool IsOk { get; set; }
 
         public ICollection<Municipality> Municipality { get; set; }
 
