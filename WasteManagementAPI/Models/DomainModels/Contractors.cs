@@ -3,14 +3,15 @@
     public class Contractors
     {
        
-
         public int ContractorId { get; set; }
 
         public string Nmae { get; set; } = string.Empty;
-
-
-
         
-        public ICollection<Municipalities> Municipality { get; set; }
+        //forigen key
+        public int MunicipalityId { get; set; }
+
+        //nav property
+        public Municipalities Municipalities { get; set; } = null!;
+
     }
 }
