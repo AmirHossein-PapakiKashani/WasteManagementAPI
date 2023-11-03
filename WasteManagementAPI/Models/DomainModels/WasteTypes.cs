@@ -1,6 +1,6 @@
 ﻿namespace WasteManagementAPI.Models.DomainModels
 {
-    public class WasteType
+    public class WasteTypes
     {
         public int WasteTypeId { get; set; }
 

@@ -1,6 +1,6 @@
 ﻿namespace WasteManagementAPI.Models.DomainModels
 {
-    public class Municipality
+    public class Municipalities
     {
         public int MunicipalityId { get; set; }
 

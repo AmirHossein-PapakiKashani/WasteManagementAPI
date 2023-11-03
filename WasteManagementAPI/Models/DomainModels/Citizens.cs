@@ -1,7 +1,9 @@
 ﻿namespace WasteManagementAPI.Models.DomainModels
 {
-    public class Citizen
+    public class Citizens
     {
+
+
 
         public int CitizenId { get; set; }
 
@@ -13,6 +15,6 @@
 
         public string Password { get; set; }    = string.Empty;
 
-
+        public Shipments Shipments { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace WasteManagementAPI.Models.DomainModels
 {
-    public class Contractor
+    public class Contractors
     {
        
 
@@ -11,6 +11,6 @@
 
 
         
-        public ICollection<Municipality> Municipality { get; set; }
+        public ICollection<Municipalities> Municipality { get; set; }
     }
 }

@@ -9,16 +9,16 @@ namespace WasteManagementAPI.Models
     {
         public WastMangementContext(DbContextOptions<WastMangementContext> options) : base(options) { }
 
-        public DbSet<Citizen> Citizens { get; set; }
+        public DbSet<Citizens> Citizens { get; set; }
 
-        public DbSet<Contractor> Contractors { get; set; }
+        public DbSet<Contractors> Contractors { get; set; }
 
         public DbSet<Employee> Employees { get; set; }
 
-        public DbSet<Municipality> Municipality { get; set;}
+        public DbSet<Municipalities> Municipality { get; set;}
 
 
-        public DbSet<Supervisor> Supervisor { get; set; }
+        public DbSet<Supervisors> Supervisor { get; set; }
 
         public DbSet<UserProduct> UserProducts { get; set; }
 
