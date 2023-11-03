@@ -23,5 +23,11 @@
         public int CollectionBoothId { get; set; }
         //navigation prop
         public CollectionBooths CollectionBooths { get; set; } = null !;
+        
+        //forigen key
+        public int WasteTypesId { get; set; }
+
+        //navigation property
+        public WasteTypes WasteTypes { get; set; } = null!;
     }
 }
