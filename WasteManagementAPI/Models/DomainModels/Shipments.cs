@@ -4,7 +4,7 @@
     {
 
 
-        public int ShipmentId { get; set; }
+        public int ShipmentsId { get; set; }
 
         public string Weight { get; set; } = string.Empty;
 
@@ -14,13 +14,13 @@
        
 
         //foregin key 
-        public int CitizenId { get; set; }
+        public int CitizensId { get; set; }
 
         //navigation propertty
         public Citizens Citizens { get; set; } = null!;
 
         //forigen key
-        public int CollectionBoothId { get; set; }
+        public int CollectionBoothsId { get; set; }
         //navigation prop
         public CollectionBooths CollectionBooths { get; set; } = null !;
         

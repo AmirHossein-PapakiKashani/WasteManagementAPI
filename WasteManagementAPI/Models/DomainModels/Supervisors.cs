@@ -5,7 +5,7 @@ namespace WasteManagementAPI.Models.DomainModels
     public class Supervisors
     {
         
-        public int SupervisorId { get; set; }
+        public int SupervisorsId { get; set; }
 
         public string Name { get; set; } = string.Empty;
 

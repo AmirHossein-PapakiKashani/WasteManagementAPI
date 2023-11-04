@@ -2,7 +2,7 @@
 {
     public class WasteTypes
     {
-        public int WasteTypeId { get; set; }
+        public int WasteTypesId { get; set; }
 
         public string WasteName { get; set;} = string.Empty;
 

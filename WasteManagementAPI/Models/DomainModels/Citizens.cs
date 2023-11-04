@@ -5,7 +5,7 @@
 
 
 
-        public int CitizenId { get; set; }
+        public int CitizensId { get; set; }
 
         public string Name { get; set; } = string.Empty;
 
@@ -15,6 +15,6 @@
 
         public string Password { get; set; }    = string.Empty;
 
-        public Shipments Shipments { get; set; }
+        public Shipments? Shipments { get; set; } 
     }
 }
