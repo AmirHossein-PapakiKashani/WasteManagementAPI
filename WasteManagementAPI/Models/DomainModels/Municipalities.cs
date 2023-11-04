@@ -8,6 +8,8 @@
 
         public string Password {get ; set; } = string.Empty;
 
+        public string Role { get; set; } = string.Empty;
+
         //nav prop
         public ICollection<Contractors> Contractors { get; set; } = new List<Contractors>();
 
