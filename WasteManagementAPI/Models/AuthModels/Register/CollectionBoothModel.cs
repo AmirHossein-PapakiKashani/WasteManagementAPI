@@ -8,5 +8,6 @@
 
         public string EmployeePasswored { get; set; } 
 
+        public string Role { get; set; } 
     }
 }

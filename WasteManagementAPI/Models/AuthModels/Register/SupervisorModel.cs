@@ -1,4 +1,6 @@
-﻿namespace WasteManagementAPI.Models.AuthModels.Register
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+namespace WasteManagementAPI.Models.AuthModels.Register
 {
     public class SupervisorModel
     {
@@ -6,5 +8,8 @@
 
         public string Password { get; set; } 
 
+        public string Role { get; set; } 
+
+        
     }
 }
