@@ -1,6 +1,6 @@
 ﻿namespace WasteManagementAPI.Models.AuthModels
 {
-    public class CitizenModel
+    public class UserModel
     {
         public string Name { get; set; } 
 

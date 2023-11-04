@@ -1,8 +1,8 @@
 ﻿namespace WasteManagementAPI.Models.AuthModels.Login
 {
-    public class SupervisorLogin
+    public class UserLogin
     {
-        public string  Name { get; set; }
+        public string UserName { get; set; }
 
         public string Password { get; set; }
 
