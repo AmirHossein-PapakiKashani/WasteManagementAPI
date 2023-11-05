@@ -30,10 +30,24 @@ namespace WasteManagementAPI.Controllers
         }
 
 
+        #region Register
+        [HttpPost("Register")]
+        public IActionResult Register(UserModel user)
+        {
+            var citizen = _context.Citizens.Add(new Models.DomainModels.Citizens { Name = user.Name , UserName = user.UserName , Password = user.Password , Role = user.Role});
+
+           var writeToken =   Generate(user);
+
+            _context.SaveChanges();
+
+            return Ok(writeToken);
+
+        }
+        #endregion
 
 
-        [AllowAnonymous]
-        [HttpPost]
+        #region Login
+        [HttpPost("Login")]
         public IActionResult Login([FromBody] UserLogin userLogin)
         {
             var user = Authenticate(userLogin);
@@ -46,10 +60,12 @@ namespace WasteManagementAPI.Controllers
 
             return NotFound("User not found");
         }
+        #endregion 
 
+        #region Gererate
         private string Generate(UserModel user)
         {
-            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
+            var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Secret"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             var claims = new[]
@@ -59,34 +75,36 @@ namespace WasteManagementAPI.Controllers
                 new Claim(ClaimTypes.Role, user.Role)
             };
 
-            var token = new JwtSecurityToken(_config["Jwt:Issuer"],
-              _config["Jwt:Audience"],
+            var token = new JwtSecurityToken(_config["JWT:ValidIssuer"],
+              _config["JWT:ValidAudience"],
               claims,
               expires: DateTime.Now.AddMinutes(15),
               signingCredentials: credentials);
 
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
+        #endregion 
 
+        #region Authenticate
         private UserModel Authenticate(UserLogin userLogin)
         {
-            var currentCitizen = _context.Citizens.FirstOrDefault(c => c.CitizensUserName == userLogin.UserName && c.Password == userLogin.Password);
+            var currentCitizen = _context.Citizens.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.Password == userLogin.Password);
 
             UserModel mapcitizen = _mapper.Map<UserModel>(currentCitizen);
 
-            var currentCollectionBooth = _context.CollectionBooths.FirstOrDefault(c => c.EmployeeUserName == userLogin.UserName && c.EmployeePasswored == userLogin.Password);
+            var currentCollectionBooth = _context.CollectionBooths.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.EmployeePasswored == userLogin.Password);
 
             UserModel mapCollection = _mapper.Map<UserModel>(currentCollectionBooth);
 
-            var currentContractors = _context.Contractors.FirstOrDefault(c => c.ContractorsUserName == userLogin.UserName && c.Password == userLogin.Password);
+            var currentContractors = _context.Contractors.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.Password == userLogin.Password);
 
             UserModel mapContractors = _mapper.Map<UserModel>(currentContractors);
 
-            var currentMunicipality = _context.Municipality.FirstOrDefault(c => c.MunicipalitiesUserName == userLogin.UserName && c.Password == userLogin.Password);
+            var currentMunicipality = _context.Municipality.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.Password == userLogin.Password);
 
             UserModel mapMunicipality = _mapper.Map<UserModel>(currentMunicipality);
 
-            var currentSupervisor = _context.Supervisor.FirstOrDefault(c => c.SupervisorUserName == userLogin.UserName && c.Password == userLogin.Password);
+            var currentSupervisor = _context.Supervisor.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.Password == userLogin.Password);
 
             UserModel mapSupervisor = _mapper.Map<UserModel>(currentSupervisor);
 
@@ -121,8 +139,15 @@ namespace WasteManagementAPI.Controllers
             }
 
 
-            return null!;
-        }
+            return new UserModel()
+            {
+                UserName = userLogin.UserName,
+                Password = userLogin.Password,
+                
+                
+            };
 
+        }
+        #endregion
     }
 }
