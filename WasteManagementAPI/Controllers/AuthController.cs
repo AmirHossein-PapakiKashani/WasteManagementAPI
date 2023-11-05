@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -9,6 +10,7 @@ using System.Text;
 using WasteManagementAPI.Models;
 using WasteManagementAPI.Models.AuthModels;
 using WasteManagementAPI.Models.AuthModels.Login;
+using WasteManagementAPI.Models.DomainModels;
 
 namespace WasteManagementAPI.Controllers
 {
@@ -61,6 +63,29 @@ namespace WasteManagementAPI.Controllers
             return NotFound("User not found");
         }
         #endregion 
+
+        #region Update
+        [HttpPut("Update")]
+        public IActionResult Update(UserModel Updateuser)
+        {
+            var mapUpdate = _mapper.Map<Citizens>(Updateuser);
+            _context.Update(mapUpdate);
+           _context.SaveChanges(); 
+            return NoContent();
+              
+        }
+        #endregion
+        #region Delete
+        [HttpDelete]
+        public IActionResult Delete(UserLogin userLogin)
+        {
+             var mapUpdate = _mapper.Map<Citizens>(userLogin);
+            _context.Update(mapUpdate);
+           _context.SaveChanges(); 
+            return NoContent();
+        } 
+
+        #endregion
 
         #region Gererate
         private string Generate(UserModel user)
