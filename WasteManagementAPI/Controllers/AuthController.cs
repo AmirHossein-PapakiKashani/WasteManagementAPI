@@ -80,7 +80,7 @@ namespace WasteManagementAPI.Controllers
         public IActionResult Delete(UserLogin userLogin)
         {
              var mapUpdate = _mapper.Map<Citizens>(userLogin);
-            _context.Update(mapUpdate);
+           _context.Remove(mapUpdate);
            _context.SaveChanges(); 
             return NoContent();
         } 
