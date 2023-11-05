@@ -6,7 +6,7 @@
 
         public string MunicipalityName { get; set; } = string.Empty;
 
-        public string MunicipalitiesUserName { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
 
 
         public string Password {get ; set; } = string.Empty;

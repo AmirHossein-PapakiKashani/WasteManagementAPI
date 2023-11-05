@@ -6,7 +6,7 @@
 
         public string EmployeeName { get; set; } = string.Empty;
 
-        public string EmployeeUserName { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
 
         public string EmployeePasswored { get; set; } = string.Empty;
 

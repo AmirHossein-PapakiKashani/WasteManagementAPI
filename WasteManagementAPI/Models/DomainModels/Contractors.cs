@@ -7,7 +7,7 @@
 
         public string Nmae { get; set; } = string.Empty;
 
-        public string ContractorsUserName { get; set; } = string.Empty;
+        public string UserName { get; set; } = string.Empty;
 
         public string Password { get; set; }
 
