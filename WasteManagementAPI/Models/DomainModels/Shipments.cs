@@ -6,7 +6,7 @@
 
         public int ShipmentsId { get; set; }
 
-        public string Weight { get; set; } = string.Empty;
+        public int Weight { get; set; } 
 
         public int PointsAllocated { get; set; }
 

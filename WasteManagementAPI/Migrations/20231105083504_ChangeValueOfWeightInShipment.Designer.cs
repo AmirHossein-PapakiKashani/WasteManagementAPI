@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WasteManagementAPI.Models;
 
@@ -10,9 +11,11 @@ using WasteManagementAPI.Models;
 namespace WasteManagementAPI.Migrations
 {
     [DbContext(typeof(WastMangementGptBaseContext))]
-    partial class WastMangementGptBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231105083504_ChangeValueOfWeightInShipment")]
+    partial class ChangeValueOfWeightInShipment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
