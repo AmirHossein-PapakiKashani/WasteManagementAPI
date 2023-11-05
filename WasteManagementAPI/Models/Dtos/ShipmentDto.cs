@@ -9,11 +9,14 @@ namespace WasteManagementAPI.Models.Dtos
 
         public int Weight { get; set; } 
 
-        public int PointsAllocated { get; set; }
+        public int CitizenId { get; set; }
 
-        public bool ApproveBySupervisor { get; set; }
+        public int CollectionBoothId { get; set; }
+        //public int PointsAllocated { get; set; }
+
+        //public bool ApproveBySupervisor { get; set; }
        
-       public  List<WasteTypes> WasteTypes { get; set; } =  new List<WasteTypes>();
+       public  string WasteTypes { get; set; } 
 
     }
 }

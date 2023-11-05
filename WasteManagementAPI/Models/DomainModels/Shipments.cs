@@ -25,6 +25,6 @@
         public CollectionBooths CollectionBooths { get; set; } = null !;
         
         //navigation
-        public ICollection<WasteTypes> WasteTypes { get; set; } =  new List<WasteTypes>();
+       
     }
 }

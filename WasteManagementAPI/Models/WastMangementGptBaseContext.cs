@@ -20,7 +20,7 @@ namespace WasteManagementAPI.Models
 
         public DbSet<Supervisors> Supervisor { get; set; }
 
-        public DbSet<WasteTypes> WasteTypes { get; set; }
+       
 
         public DbSet<Shipments> Shipments { get; set; }
 
