@@ -6,6 +6,7 @@ using Microsoft.Identity.Client;
 using WasteManagementAPI.Models;
 using WasteManagementAPI.Models.DomainModels;
 using WasteManagementAPI.Models.Dtos;
+using WasteManagementAPI.Models.Others;
 
 namespace WasteManagementAPI.Controllers
 {
@@ -33,31 +34,36 @@ namespace WasteManagementAPI.Controllers
             var recordwaste = new Shipments()
             {
                Weight = shipment.Weight,
-               WasteTypes = shipment.WasteTypes,
                ApproveBySupervisor = SupervisorAprove(shipment.Weight),
-                PointsAllocated = CaculatePoint(shipment.Weight, shipment.WasteTypes) + preAprove
+               CitizensId = shipment.CitizenId,
+               CollectionBoothsId = shipment.CollectionBoothId
             };
-
             
+            recordwaste.PointsAllocated =  CaculatePoint(shipment.Weight, shipment.WasteTypes) + preAprove;
+            _context.Shipments.Add(recordwaste);
+            _context.SaveChanges(); 
             return Ok(recordwaste);
+
+
 
         }
 
-        private int CaculatePoint(int weightpoint , List<WasteTypes> wastetypepoint)
+        private int CaculatePoint(int weightpoint , string wastetype)
         {
+            
             const int scoreOfDryBread = 1000;
             const int scoreOfIron = 1500;
             const int scoreOfPlastic = 2000;
             
-            if ( wastetypepoint.ElementAt(flag).WasteName == "Dry Bread")
+            if(WasteType.DryBread == wastetype)
             {
                 return scoreOfDryBread * weightpoint /5 ;
             }
-            else if ( wastetypepoint.ElementAt(flag).WasteName == "Iron")
+            else if (wastetype == WasteType.Iron)
             {
                 return scoreOfIron * weightpoint /5 ;
             }
-            else if ( wastetypepoint.ElementAt(flag).WasteName == "Plastic")
+            else if (wastetype   ==WasteType.Plastic)
             {
                return scoreOfPlastic * weightpoint /5;
             }
