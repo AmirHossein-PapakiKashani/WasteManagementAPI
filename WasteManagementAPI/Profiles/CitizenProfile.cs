@@ -12,6 +12,7 @@ namespace WasteManagementAPI.Profiles
                 CreateMap<Citizens ,UserModel >();
                 CreateMap<Citizens, UserLogin>();
                 CreateMap<UserModel, Citizens>();
+                CreateMap<UserLogin, Citizens>();
             }
     }
 }
