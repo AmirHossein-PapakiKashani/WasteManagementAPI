@@ -11,15 +11,7 @@ namespace WasteManagementAPI.Models
 
         public DbSet<Citizens> Citizens { get; set; }
 
-        public DbSet<Contractors> Contractors { get; set; }
-
-        public DbSet<CollectionBooths> CollectionBooths { get; set; }
-
-        public DbSet<Municipalities> Municipality { get; set;}
-
-
-        public DbSet<Supervisors> Supervisor { get; set; }
-
+     
        
 
         public DbSet<Shipments> Shipments { get; set; }

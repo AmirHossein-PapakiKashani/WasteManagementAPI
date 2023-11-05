@@ -11,20 +11,10 @@
         public int PointsAllocated { get; set; }
 
         public bool ApproveBySupervisor { get; set; }
-       
 
-        //foregin key 
-        public int CitizensId { get; set; }
+        public ICollection<Citizens> Citizens { get; set; } = new List<Citizens>();
 
-        //navigation propertty
-        public Citizens Citizens { get; set; } = null!;
 
-        //forigen key
-        public int CollectionBoothsId { get; set; }
-        //navigation prop
-        public CollectionBooths CollectionBooths { get; set; } = null !;
-        
-        //navigation
-       
+
     }
 }
