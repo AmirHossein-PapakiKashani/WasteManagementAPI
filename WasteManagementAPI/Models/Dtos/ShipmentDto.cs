@@ -9,7 +9,7 @@ namespace WasteManagementAPI.Models.Dtos
 
         public int Weight { get; set; }
 
-        public int CitizenId { get; set; }
+        public int CitizensId { get; set; }
 
         //public int CollectionBoothId { get; set; }
         //public int PointsAllocated { get; set; }

@@ -11,8 +11,12 @@
         public int PointsAllocated { get; set; }
 
         public bool ApproveBySupervisor { get; set; }
-
-        public ICollection<Citizens> Citizens { get; set; } = new List<Citizens>();
+        
+        
+        //fk
+        public int CitizensId { get; set; }
+        //nav
+        public Citizens Citizens { get; set; } = null!;
 
 
 
