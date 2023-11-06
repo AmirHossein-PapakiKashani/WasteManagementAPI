@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
+using System.Security.Claims;
 using WasteManagementAPI.Models;
 using WasteManagementAPI.Models.DomainModels;
 using WasteManagementAPI.Models.Dtos;
@@ -27,6 +28,8 @@ namespace WasteManagementAPI.Controllers
         [Authorize(Roles ="Citizen, Admin")]
         public IActionResult RecordWaste([FromBody] ShipmentDto shipment)
         {
+            var currentUser = HttpContext.User;
+
             //the following line retrive int data form shipment and convert it to int
             var preAprove = Convert.ToInt32(_context.Shipments.Where(p => p.ShipmentsId == shipment.ShipmentsId).FirstOrDefault( p => p.ApproveBySupervisor));
             
@@ -35,10 +38,9 @@ namespace WasteManagementAPI.Controllers
             {
                Weight = shipment.Weight,
                ApproveBySupervisor = SupervisorAprove(shipment.Weight),
-               CitizensId = shipment.CitizenId,
-               CollectionBoothsId = shipment.CollectionBoothId
+                   
             };
-            
+            recordwaste.CitizensId = Convert.ToInt32(currentUser.Claims.FirstOrDefault(p => p.Type == "Id" ).Value);
             recordwaste.PointsAllocated =  CaculatePoint(shipment.Weight, shipment.WasteTypes) + preAprove;
             _context.Shipments.Add(recordwaste);
             _context.SaveChanges(); 

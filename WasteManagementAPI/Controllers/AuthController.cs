@@ -97,7 +97,8 @@ namespace WasteManagementAPI.Controllers
             {
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim("UserName", user.UserName),
-                new Claim(ClaimTypes.Role, user.Role)
+                new Claim(ClaimTypes.Role, user.Role),
+                new Claim (ClaimTypes.NameIdentifier, Convert.ToString(user.Id))
             };
 
             var token = new JwtSecurityToken(_config["JWT:ValidIssuer"],
@@ -117,22 +118,7 @@ namespace WasteManagementAPI.Controllers
 
             UserModel mapcitizen = _mapper.Map<UserModel>(currentCitizen);
 
-            var currentCollectionBooth = _context.CollectionBooths.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.EmployeePasswored == userLogin.Password);
-
-            UserModel mapCollection = _mapper.Map<UserModel>(currentCollectionBooth);
-
-            var currentContractors = _context.Contractors.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.Password == userLogin.Password);
-
-            UserModel mapContractors = _mapper.Map<UserModel>(currentContractors);
-
-            var currentMunicipality = _context.Municipality.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.Password == userLogin.Password);
-
-            UserModel mapMunicipality = _mapper.Map<UserModel>(currentMunicipality);
-
-            var currentSupervisor = _context.Supervisor.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.Password == userLogin.Password);
-
-            UserModel mapSupervisor = _mapper.Map<UserModel>(currentSupervisor);
-
+         
             
 
             if (mapcitizen != null )
@@ -142,27 +128,7 @@ namespace WasteManagementAPI.Controllers
 
 
             
-            if (mapCollection != null )
-            {
-                return mapCollection;
-            }
-
-            
-            if (mapContractors != null )
-            {
-                return mapContractors;
-            }
-            
-            if (mapMunicipality != null )
-            {
-                return mapMunicipality;
-            }
-            
-            if (mapSupervisor != null )
-            {
-                return mapSupervisor;
-            }
-
+           
 
             return new UserModel()
             {
