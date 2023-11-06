@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WasteManagementAPI.Models;
 
@@ -11,9 +12,11 @@ using WasteManagementAPI.Models;
 namespace WasteManagementAPI.Migrations
 {
     [DbContext(typeof(WastMangementGptBaseContext))]
-    partial class WastMangementGptBaseContextModelSnapshot : ModelSnapshot
+    [Migration("20231105123317_RelationBetweenCitizenAndShipment")]
+    partial class RelationBetweenCitizenAndShipment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,7 +59,7 @@ namespace WasteManagementAPI.Migrations
 
                     b.HasIndex("ShipmentsId");
 
-                    b.ToTable("Citizens", (string)null);
+                    b.ToTable("Citizens");
                 });
 
             modelBuilder.Entity("WasteManagementAPI.Models.DomainModels.Shipments", b =>
@@ -78,7 +81,7 @@ namespace WasteManagementAPI.Migrations
 
                     b.HasKey("ShipmentsId");
 
-                    b.ToTable("Shipments", (string)null);
+                    b.ToTable("Shipments");
                 });
 
             modelBuilder.Entity("WasteManagementAPI.Models.DomainModels.Citizens", b =>
