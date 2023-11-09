@@ -5,7 +5,7 @@ namespace WasteManagementAPI.Models.Dtos
     public class ShipmentDto
     {
         
-        public int ShipmentsId { get; set; }
+        //public int ShipmentsId { get; set; }
 
         public int Weight { get; set; }
 

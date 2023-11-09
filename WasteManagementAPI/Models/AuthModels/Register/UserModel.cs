@@ -1,8 +1,11 @@
-﻿namespace WasteManagementAPI.Models.AuthModels
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+
+namespace WasteManagementAPI.Models.AuthModels
 {
     public class UserModel
     {
-        public int? Id { get; set; }
+       
+      //  public int? Id { get; set; }
 
         public string Name { get; set; } 
 

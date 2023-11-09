@@ -5,9 +5,9 @@ using WasteManagementAPI.Models.DomainModels;
 
 namespace WasteManagementAPI.Models
 {
-    public class WastMangementGptBaseContext : DbContext
+    public class WastMangementDbContext : DbContext
     {
-        public WastMangementGptBaseContext(DbContextOptions<WastMangementGptBaseContext> options) : base(options) { }
+        public WastMangementDbContext(DbContextOptions<WastMangementDbContext> options) : base(options) { }
 
         public DbSet<Citizens> Citizens { get; set; }
 

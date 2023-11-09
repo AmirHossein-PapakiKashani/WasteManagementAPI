@@ -18,13 +18,13 @@ namespace WasteManagementAPI.Controllers
     [ApiController]
     public class AuthController : ControllerBase
     {
-        private readonly WastMangementGptBaseContext _context;
+        private readonly WastMangementDbContext _context;
 
         private IMapper _mapper;
 
         private readonly IConfiguration _config;
 
-        public AuthController(WastMangementGptBaseContext context, IConfiguration configuration, IMapper mapper)
+        public AuthController(WastMangementDbContext context, IConfiguration configuration, IMapper mapper)
         {
             _context = context;
             _config = configuration;
@@ -92,13 +92,14 @@ namespace WasteManagementAPI.Controllers
         {
             var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["JWT:Secret"]));
             var credentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
-
-            var claims = new[]
+            var compare = _context.Citizens.FirstOrDefault(a => a.UserName == user.UserName);
+            
+             var claims = new[]
             {
                 new Claim(ClaimTypes.Name, user.Name),
                 new Claim("UserName", user.UserName),
                 new Claim(ClaimTypes.Role, user.Role),
-                new Claim (ClaimTypes.NameIdentifier, Convert.ToString(user.Id))
+                new Claim ("CitizensId", Convert.ToString(compare?.CitizensId))
             };
 
             var token = new JwtSecurityToken(_config["JWT:ValidIssuer"],

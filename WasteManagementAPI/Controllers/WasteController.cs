@@ -16,9 +16,9 @@ namespace WasteManagementAPI.Controllers
     public class WasteController : ControllerBase
     {
         public int flag = 0;
-        private readonly WastMangementGptBaseContext _context;
+        private readonly WastMangementDbContext _context;
         private readonly IMapper _mapper;
-        public WasteController(WastMangementGptBaseContext context, IMapper mapper)
+        public WasteController(WastMangementDbContext context, IMapper mapper)
         {
             _context = context;
             _mapper = mapper;
@@ -31,7 +31,7 @@ namespace WasteManagementAPI.Controllers
             var currentUser = HttpContext.User;
 
             //the following line retrive int data form shipment and convert it to int
-            var preAprove = Convert.ToInt32(_context.Shipments.Where(p => p.ShipmentsId == shipment.ShipmentsId).FirstOrDefault( p => p.ApproveBySupervisor));
+            // var preAprove = Convert.ToInt32(_context.Shipments.Where(p => p.ShipmentsId == shipment.ShipmentsId).FirstOrDefault( p => p.ApproveBySupervisor));
             
             //in this line we get info from shipmentdto  and map it to shipments
             var recordwaste = new Shipments()
@@ -40,8 +40,8 @@ namespace WasteManagementAPI.Controllers
                ApproveBySupervisor = SupervisorAprove(shipment.Weight),
                    
             };
-            recordwaste.CitizensId = Convert.ToInt32(currentUser.Claims.FirstOrDefault(p => p.Type == "Id" ).Value);
-            recordwaste.PointsAllocated =  CaculatePoint(shipment.Weight, shipment.WasteTypes) + preAprove;
+            recordwaste.CitizensId = Convert.ToInt32(currentUser.Claims.FirstOrDefault(p => p.Type == "CitizensId" )?.Value);
+            recordwaste.PointsAllocated =  CaculatePoint(shipment.Weight, shipment.WasteTypes) + recordwaste.PointsAllocated;
             _context.Shipments.Add(recordwaste);
             _context.SaveChanges(); 
             return Ok(recordwaste);

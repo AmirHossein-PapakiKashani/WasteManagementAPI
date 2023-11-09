@@ -11,7 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddDbContext<WastMangementGptBaseContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("WastMangementGptBaseContext")));
+builder.Services.AddDbContext<WastMangementDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("WastMangementDbContext")));
 
 
 
