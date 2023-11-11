@@ -17,20 +17,20 @@ namespace WasteManagementAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
-    {
+    {       
         private readonly WastMangementDbContext _context;
 
         private IMapper _mapper;
 
         private readonly IConfiguration _config;
-
+        
         public AuthController(WastMangementDbContext context, IConfiguration configuration, IMapper mapper)
         {
             _context = context;
             _config = configuration;
             _mapper = mapper;
         }
-
+       
 
         #region Register
         [HttpPost("Register")]
@@ -48,7 +48,7 @@ namespace WasteManagementAPI.Controllers
         #endregion
 
 
-        #region Login
+        #region Login      
         [HttpPost("Login")]
         public IActionResult Login([FromBody] UserLogin userLogin)
         {

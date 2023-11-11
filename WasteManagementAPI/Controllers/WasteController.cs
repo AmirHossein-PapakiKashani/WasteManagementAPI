@@ -31,7 +31,7 @@ namespace WasteManagementAPI.Controllers
             var currentUser = HttpContext.User;
 
             //the following line retrive int data form shipment and convert it to int
-            // var preAprove = Convert.ToInt32(_context.Shipments.Where(p => p.ShipmentsId == shipment.ShipmentsId).FirstOrDefault( p => p.ApproveBySupervisor));
+            
             
             //in this line we get info from shipmentdto  and map it to shipments
             var recordwaste = new Shipments()
@@ -41,7 +41,15 @@ namespace WasteManagementAPI.Controllers
                    
             };
             recordwaste.CitizensId = Convert.ToInt32(currentUser.Claims.FirstOrDefault(p => p.Type == "CitizensId" )?.Value);
-            recordwaste.PointsAllocated =  CaculatePoint(shipment.Weight, shipment.WasteTypes) + recordwaste.PointsAllocated;
+            
+            int convertToInt = Convert.ToInt32(recordwaste.CitizensId);
+
+            var query = _context.Shipments.OrderByDescending( p => p.PointsAllocated).FirstOrDefault(c => c.CitizensId == convertToInt);
+            
+            int prepoints = query.PointsAllocated ;
+            
+            
+            recordwaste.PointsAllocated +=  CaculatePoint(shipment.Weight, shipment.WasteTypes) + prepoints ;
             _context.Shipments.Add(recordwaste);
             _context.SaveChanges(); 
             return Ok(recordwaste);
