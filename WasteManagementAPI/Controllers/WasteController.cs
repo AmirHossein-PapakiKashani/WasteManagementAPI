@@ -46,10 +46,18 @@ namespace WasteManagementAPI.Controllers
 
             var query = _context.Shipments.OrderByDescending( p => p.PointsAllocated).FirstOrDefault(c => c.CitizensId == convertToInt);
             
-            int prepoints = query.PointsAllocated ;
+            if (query != null)
+            {
+                int prepoints = query.PointsAllocated ;
+                recordwaste.PointsAllocated +=  CaculatePoint(shipment.Weight, shipment.WasteTypes) + prepoints ;
+            }
+
+            else
+            {
+                recordwaste.PointsAllocated +=  CaculatePoint(shipment.Weight, shipment.WasteTypes) + 0 ;
+            }
             
             
-            recordwaste.PointsAllocated +=  CaculatePoint(shipment.Weight, shipment.WasteTypes) + prepoints ;
             _context.Shipments.Add(recordwaste);
             _context.SaveChanges(); 
             return Ok(recordwaste);

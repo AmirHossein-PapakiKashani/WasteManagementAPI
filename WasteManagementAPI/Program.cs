@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WasteManagementAPI.Models;
+using WasteManagementAPI.Models.Repositories.IRepositoryService;
+using WasteManagementAPI.Models.Repositories.RepositoryService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,10 +13,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
+//connect project with database 
 builder.Services.AddDbContext<WastMangementDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("WastMangementDbContext")));
 
-
-
+//Services
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 
 // Config Identity
