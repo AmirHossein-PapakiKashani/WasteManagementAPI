@@ -3,7 +3,7 @@
     public class Citizens
     {
 
-
+        public Citizens() => Shipments = new HashSet<Shipments>();
 
         public int CitizensId { get; set; }
 
@@ -17,6 +17,6 @@
 
         public string Role { get; set; } = string.Empty;
 
-        public Shipments Shipments { get; set; } =null!;
+        public ICollection<Shipments> Shipments { get; set; } 
     }
 }
