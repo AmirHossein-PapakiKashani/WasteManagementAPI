@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+﻿
 
-namespace WasteManagementAPI.Models.AuthModels
+namespace WasteManagementAPI.Models.AuthModels.Register
 {
     public class UserModel
     {

@@ -10,6 +10,7 @@ using System.Text;
 using WasteManagementAPI.Models;
 using WasteManagementAPI.Models.AuthModels;
 using WasteManagementAPI.Models.AuthModels.Login;
+using WasteManagementAPI.Models.AuthModels.Register;
 using WasteManagementAPI.Models.DomainModels;
 using WasteManagementAPI.Models.Others;
 using WasteManagementAPI.Models.Repositories.IRepositoryService;
@@ -19,9 +20,9 @@ namespace WasteManagementAPI.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class AuthController : ControllerBase
-    {       
-       
-        
+    {
+
+      
         private readonly IAuthRepository _authRepository;
 
         public AuthController(IAuthRepository authRepository)
@@ -29,7 +30,6 @@ namespace WasteManagementAPI.Controllers
             _authRepository = authRepository;
         }
        
-
         #region Register
         [HttpPost("Register")]
         public async Task<IActionResult> Register(UserModel user)
@@ -45,7 +45,7 @@ namespace WasteManagementAPI.Controllers
         [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] UserLogin userLogin)
         {
-           var response = _authRepository.Login(userLogin);
+           var response = await _authRepository.Login(userLogin);
 
            return Ok(response);
         }
@@ -53,9 +53,9 @@ namespace WasteManagementAPI.Controllers
 
         #region Update
         [HttpPut("Update")]
-        public IActionResult Update(UserModel Updateuser)
+        public async Task<IActionResult> Update(UserModel Updateuser)
         {
-          var response = _authRepository.Update(Updateuser);
+          var response = await _authRepository.Update(Updateuser);
           return Ok(response);
         }
         #endregion

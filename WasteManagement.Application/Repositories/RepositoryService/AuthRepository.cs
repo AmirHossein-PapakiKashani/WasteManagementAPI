@@ -1,14 +1,16 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http.HttpResults;
+
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using WasteManagementAPI.Models.AuthModels;
 using WasteManagementAPI.Models.AuthModels.Login;
+using WasteManagementAPI.Models.AuthModels.Register;
 using WasteManagementAPI.Models.DomainModels;
 using WasteManagementAPI.Models.Others;
 using WasteManagementAPI.Models.Repositories.IRepositoryService;
@@ -35,6 +37,7 @@ namespace WasteManagementAPI.Models.Repositories.RepositoryService
 
         public async Task<AuthResponseDto> Register(UserModel user)
         {
+            
             var citizen = _context.Citizens.Add(new Citizens { Name = user.Name, UserName = user.UserName, Password = user.Password, Role = user.Role });
 
             var writeToken = Generate(user);
@@ -153,6 +156,7 @@ namespace WasteManagementAPI.Models.Repositories.RepositoryService
             };
 
         }
+
         #endregion
 
     }

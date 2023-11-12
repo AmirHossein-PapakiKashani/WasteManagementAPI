@@ -28,4 +28,9 @@
     <Folder Include="Migrations\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\WasteManagement.Application\WasteManagement.Application.csproj" />
+    <ProjectReference Include="..\WasteManagement.Domain\WasteManagement.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

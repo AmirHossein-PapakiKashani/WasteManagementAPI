@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using WasteManagementAPI.Models.AuthModels;
 using WasteManagementAPI.Models.AuthModels.Login;
+using WasteManagementAPI.Models.AuthModels.Register;
 using WasteManagementAPI.Models.DomainModels;
 
 namespace WasteManagementAPI.Profiles
