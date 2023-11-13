@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WasteManagement.Domain\WasteManagement.Domain.csproj" />
-	  
   </ItemGroup>
 
+ 
 </Project>

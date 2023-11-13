@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
-
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -13,11 +12,11 @@ using WasteManagementAPI.Models.AuthModels.Login;
 using WasteManagementAPI.Models.AuthModels.Register;
 using WasteManagementAPI.Models.DomainModels;
 using WasteManagementAPI.Models.Others;
-using WasteManagementAPI.Models.Repositories.IRepositoryService;
+using WasteManagementAPI.Models.Repositories;
 
 namespace WasteManagementAPI.Models.Repositories.RepositoryService
 {
-    public class AuthRepository : IAuthRepository
+    public class AuthRepository  
     {
 
 
