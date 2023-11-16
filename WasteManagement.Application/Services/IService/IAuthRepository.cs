@@ -4,7 +4,7 @@ using WasteManagementAPI.Models.AuthModels.Login;
 using WasteManagementAPI.Models.AuthModels.Register;
 using WasteManagementAPI.Models.Others;
 
-namespace WasteManagementAPI.Models.Repositories.IRepositoryService
+namespace WasteManagement.Application.Services.IService
 {
     public interface IAuthRepository
     {

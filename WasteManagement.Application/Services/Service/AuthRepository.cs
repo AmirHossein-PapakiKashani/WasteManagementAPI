@@ -7,6 +7,8 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using WasteManagement.Application.IUnitOfWork;
+using WasteManagement.Application.Services.IService;
 using WasteManagementAPI.Models.AuthModels;
 using WasteManagementAPI.Models.AuthModels.Login;
 using WasteManagementAPI.Models.AuthModels.Register;
@@ -16,28 +18,34 @@ using WasteManagementAPI.Models.Repositories;
 
 namespace WasteManagementAPI.Models.Repositories.RepositoryService
 {
-    public class AuthRepository  
+    public class AuthRepository  : IAuthRepository
     {
 
 
 
         private readonly WastMangementDbContext _context;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
 
-        public AuthRepository(WastMangementDbContext context, IMapper mapper, IConfiguration config)
+        public AuthRepository(WastMangementDbContext context, IMapper mapper, IConfiguration config, IUnitOfWork unitOfWork)
         {
             _context = context;
             _mapper = mapper;
             _config = config;
+            _unitOfWork = unitOfWork;
         }
 
 
 
         public async Task<AuthResponseDto> Register(UserModel user)
         {
+            var maptoCitizen = _mapper.Map<Citizens>(user);
+
+            // var citizen = _context.Citizens.Add(maptoCitizen);
+
+            var citezens = _unitOfWork.Citizens.Add;
             
-            var citizen = _context.Citizens.Add(new Citizens { Name = user.Name, UserName = user.UserName, Password = user.Password, Role = user.Role });
 
             var writeToken = Generate(user);
 
@@ -76,8 +84,8 @@ namespace WasteManagementAPI.Models.Repositories.RepositoryService
         {
 
             var mapUpdate = _mapper.Map<Citizens>(Updateuser);
-            _context.Update(mapUpdate);
-            _context.SaveChanges();
+            _unitOfWork.Citizens.Update(mapUpdate);
+            _unitOfWork.Complete();
             return new AuthResponseDto
             {
                 IsSucceed = true,
@@ -90,8 +98,8 @@ namespace WasteManagementAPI.Models.Repositories.RepositoryService
         public async Task<AuthResponseDto> Delete(UserLogin userLogin)
         {
             var mapUpdate = _mapper.Map<Citizens>(userLogin);
-            _context.Remove(mapUpdate);
-            _context.SaveChanges();
+            _unitOfWork.Citizens.Delete(mapUpdate);
+            _unitOfWork.Complete();
             return new AuthResponseDto
             {
                 IsSucceed = false,
