@@ -13,7 +13,7 @@ using WasteManagementAPI.Models.AuthModels.Login;
 using WasteManagementAPI.Models.AuthModels.Register;
 using WasteManagementAPI.Models.DomainModels;
 using WasteManagementAPI.Models.Others;
-using WasteManagementAPI.Models.Repositories.IRepositoryService;
+using WasteManagement.Application.Services.IService;
 
 namespace WasteManagementAPI.Controllers
 {
