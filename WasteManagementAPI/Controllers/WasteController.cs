@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Identity.Client;
 using System.Security.Claims;
+using WasteManagement.Application.IUnitOfWork;
 using WasteManagementAPI.Models;
 using WasteManagementAPI.Models.DomainModels;
 using WasteManagementAPI.Models.Dtos;
@@ -17,11 +18,13 @@ namespace WasteManagementAPI.Controllers
     {
         public int flag = 0;
         private readonly WastMangementDbContext _context;
+        private readonly IUnitOfWork _unitOFWork;
         private readonly IMapper _mapper;
-        public WasteController(WastMangementDbContext context, IMapper mapper)
+        public WasteController(WastMangementDbContext context, IMapper mapper, IUnitOfWork unitOFWork)
         {
             _context = context;
             _mapper = mapper;
+            _unitOFWork = unitOFWork;
         }
 
         [HttpPost("RecordWaste")]
@@ -57,9 +60,8 @@ namespace WasteManagementAPI.Controllers
                 recordwaste.PointsAllocated +=  CaculatePoint(shipment.Weight, shipment.WasteTypes) + 0 ;
             }
             
-            
-            _context.Shipments.Add(recordwaste);
-            _context.SaveChanges(); 
+            _unitOFWork.Shipments.Add(recordwaste);
+            _unitOFWork.Complete(); 
             return Ok(recordwaste);
 
 
