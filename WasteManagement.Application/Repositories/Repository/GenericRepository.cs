@@ -2,10 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WasteManagement.Application.Repositories.IRepository;
 using WasteManagementAPI.Models;
+using WasteManagementAPI.Models.DomainModels;
 
 
 
@@ -27,6 +29,29 @@ namespace WasteManagement.Application.Repositories.Repository
         public void Delete(T entity)
         {
              _dbContext.Set<T>().Remove(entity); 
+          
+        }
+
+       
+
+        public T? GetFirstObject(Expression<Func<T, bool>> filterExpression)
+        {
+            return _dbContext.Set<T>().FirstOrDefault(filterExpression);
+        }
+
+        public IEnumerable<T> GetLastObject(Expression<Func<T, bool>> filterExpression)
+        {
+            yield return _dbContext.Set<T>().FirstOrDefault(filterExpression);
+        }
+
+        public IEnumerable<T> OrderByDescending(Expression<Func<T, bool>> filterExpression)
+        {
+           return _dbContext.Set<T>().OrderByDescending(filterExpression);
+        }
+
+        public IQueryable<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector)
+        {
+            return _dbContext.Set<T>().OrderByDescending(keySelector);
         }
 
         public void Update(T entity)
@@ -34,35 +59,6 @@ namespace WasteManagement.Application.Repositories.Repository
             _dbContext.Set<T>().Update(entity); 
         }
 
-        //public async Task Add(T entity)
-        //{
-        //    
-        //}
 
-        //public  void Delete(T entity)
-        //{
-        //   
-        //}
-
-        //public void Update(T entity)
-        //{
-        //    throw new NotImplementedException();
-        //}
-
-
-        ////public async Task<T> Get(int id)
-        ////{
-        ////  return await _dbContext.Set<T>().FindAsync(id);
-        ////}
-
-        //public async Task<IEnumerable<T>> GetAll()
-        //{
-        //    return await _dbContext.Set<T>().ToListAsync();
-        //}
-
-        //public void Update(T entity)
-        //{
-        //    _dbContext.Set<T>().Update(entity);
-        //}
     }
 }

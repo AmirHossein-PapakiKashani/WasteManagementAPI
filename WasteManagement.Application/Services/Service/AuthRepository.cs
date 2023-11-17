@@ -24,11 +24,11 @@ namespace WasteManagementAPI.Models.Repositories.RepositoryService
 
 
         private readonly WastMangementDbContext _context;
-        private readonly IUnitOfWork _unitOfWork;
+        private readonly IUnitOfWorks _unitOfWork;
         private readonly IMapper _mapper;
         private readonly IConfiguration _config;
 
-        public AuthRepository(WastMangementDbContext context, IMapper mapper, IConfiguration config, IUnitOfWork unitOfWork)
+        public AuthRepository(WastMangementDbContext context, IMapper mapper, IConfiguration config, IUnitOfWorks unitOfWork)
         {
             _context = context;
             _mapper = mapper;
@@ -44,12 +44,12 @@ namespace WasteManagementAPI.Models.Repositories.RepositoryService
 
             // var citizen = _context.Citizens.Add(maptoCitizen);
 
-            var citezens = _unitOfWork.Citizens.Add;
-            
+             _unitOfWork.Citizens.Add(maptoCitizen);
+            _unitOfWork.Complete();
 
             var writeToken = Generate(user);
 
-            _context.SaveChanges();
+            
 
             return new AuthResponseDto
             {
@@ -138,7 +138,7 @@ namespace WasteManagementAPI.Models.Repositories.RepositoryService
         #region Authenticate
         private UserModel Authenticate(UserLogin userLogin)
         {
-            var currentCitizen = _context.Citizens.FirstOrDefault(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.Password == userLogin.Password);
+            var currentCitizen = _unitOfWork.Citizens.GetFirstObject(c => c.UserName.ToLower() == userLogin.UserName.ToLower() && c.Password == userLogin.Password);
 
             UserModel mapcitizen = _mapper.Map<UserModel>(currentCitizen);
 

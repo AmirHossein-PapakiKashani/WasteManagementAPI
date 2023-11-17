@@ -7,7 +7,7 @@ using WasteManagement.Application.Repositories.IRepository;
 
 namespace WasteManagement.Application.IUnitOfWork
 {
-    public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWorks : IDisposable
     {
         IShipmentsRepository Shipments { get; }
         ICitizensRepository Citizens { get; }
