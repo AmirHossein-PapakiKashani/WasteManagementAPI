@@ -7,6 +7,7 @@ using WasteManagement.Application.IUnitOfWork;
 using WasteManagement.Application.Repositories.IRepository;
 using WasteManagement.Application.Repositories.Repository;
 using WasteManagementAPI.Models;
+using WasteManagementAPI.Models.DomainModels;
 
 namespace WasteManagement.Domain.Models.UnitOfWork
 {
@@ -15,15 +16,15 @@ namespace WasteManagement.Domain.Models.UnitOfWork
         private readonly WastMangementDbContext _dbContext;
 
         
-        public IShipmentsRepository Shipments {get; private set;}
+        public IShipmentsRepository Shipments {get;  set;}
 
-        public ICitizensRepository Citizens {get; private set;}
+        public ICitizensRepository Citizens {get;  set;}
 
-        public UnitOfWork(WastMangementDbContext dbContext , ShipmentsRepostiory shipmentsRepostiory)
+        public UnitOfWork(WastMangementDbContext dbContext , ShipmentsRepostiory shipmentsRepostiory, CitizensRepository citizensRepository)
         {
             _dbContext = dbContext;
             Shipments = shipmentsRepostiory;
-            Citizens = new CitizensRepository(_dbContext);
+            Citizens = citizensRepository;
         }
 
 

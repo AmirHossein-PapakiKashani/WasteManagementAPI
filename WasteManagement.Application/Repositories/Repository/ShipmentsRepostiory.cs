@@ -11,7 +11,7 @@ using WasteManagementAPI.Models.DomainModels;
 
 namespace WasteManagement.Application.Repositories.Repository
 {
-    public class ShipmentsRepostiory<T> : IShipmentsRepository<T> where T : class
+    public class ShipmentsRepostiory : IShipmentsRepository
     {
         private readonly WastMangementDbContext _dbContext;
 
@@ -21,34 +21,34 @@ namespace WasteManagement.Application.Repositories.Repository
         }
 
 
-        public T? OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector)
+        public Shipments? OrderByDescending<TKey>(Expression<Func<Shipments, TKey>> keySelector)
          {
-            return _dbContext.Set<T>().OrderByDescending(keySelector).FirstOrDefault();
+            return _dbContext.Set<Shipments>().OrderByDescending(keySelector).FirstOrDefault();
          }
 
          
-        public void Add(T entity)
+        public void Add(Shipments entity)
         {
-              _dbContext.Set<T>().AddAsync(entity);        }
+              _dbContext.Set<Shipments>().AddAsync(entity);        }
 
-        public void Delete(T entity)
+        public void Delete(Shipments entity)
         {
-             _dbContext.Set<T>().Remove(entity); 
+             _dbContext.Set<Shipments>().Remove(entity); 
           
         }
 
         
-        public T? GetFirstObject(Expression<Func<T, bool>> filterExpression)
+        public Shipments? GetFirstObject(Expression<Func<Shipments, bool>> filterExpression)
         {
-            return _dbContext.Set<T>().FirstOrDefault(filterExpression);
+            return _dbContext.Set<Shipments>().FirstOrDefault(filterExpression);
         }
 
        
 
        
-        public void Update(T entity)
+        public void Update(Shipments entity)
         {
-            _dbContext.Set<T>().Update(entity); 
+            _dbContext.Set<Shipments>().Update(entity); 
         }
     }
     

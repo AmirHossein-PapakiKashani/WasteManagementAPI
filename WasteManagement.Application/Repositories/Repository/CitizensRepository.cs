@@ -10,7 +10,7 @@ using WasteManagementAPI.Models.DomainModels;
 
 namespace WasteManagement.Application.Repositories.Repository
 {
-    public class CitizensRepository<T> : ICitizensRepository<T> where T : class
+    public class CitizensRepository : ICitizensRepository
     {
          private readonly WastMangementDbContext _dbContext;
 
@@ -19,28 +19,28 @@ namespace WasteManagement.Application.Repositories.Repository
             _dbContext = dbContext;
         }
 
-        public void Add(T entity)
+        public void Add(Citizens entity)
         {
-              _dbContext.Set<T>().AddAsync(entity);        }
+              _dbContext.Citizens.AddAsync(entity);        }
 
-        public void Delete(T entity)
+        public void Delete(Citizens entity)
         {
-             _dbContext.Set<T>().Remove(entity); 
+             _dbContext.Citizens.Remove(entity); 
           
         }
 
         
-        public T? GetFirstObject(Expression<Func<T, bool>> filterExpression)
+        public Citizens? GetFirstObject(Expression<Func<Citizens, bool>> filterExpression)
         {
-            return _dbContext.Set<T>().FirstOrDefault(filterExpression);
+            return _dbContext.Citizens.FirstOrDefault(filterExpression);
         }
 
        
 
        
-        public void Update(T entity)
+        public void Update(Citizens entity)
         {
-            _dbContext.Set<T>().Update(entity); 
+            _dbContext.Set<Citizens>().Update(entity); 
         }
        
     }

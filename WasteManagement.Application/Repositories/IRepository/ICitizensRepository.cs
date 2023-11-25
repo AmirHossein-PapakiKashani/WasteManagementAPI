@@ -10,12 +10,12 @@ using WasteManagementAPI.Models.DomainModels;
 
 namespace WasteManagement.Application.Repositories.IRepository
 {
-    public interface ICitizensRepository<T> where T : class 
+    public interface ICitizensRepository 
     {
-        void Add(T entity);
-        void Delete(T entity);
-        void Update(T entity);
+        void Add(Citizens entity);
+        void Delete(Citizens entity);
+        void Update(Citizens entity);
 
-         T? GetFirstObject (Expression<Func<T, bool>> filterExpression);
+         Citizens? GetFirstObject (Expression<Func<Citizens, bool>> filterExpression);
     }
 }

@@ -6,16 +6,17 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using WasteManagementAPI.Models.DomainModels;
+using WasteManagementAPI.Models.Dtos;
 
 namespace WasteManagement.Application.Repositories.IRepository
 {
-    public interface IShipmentsRepository<T> where T : class 
+    public interface IShipmentsRepository 
     {
          
-         void Add(T entity);
-        void Delete(T entity);
-        void Update(T entity);
-        T? OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector);
-         T? GetFirstObject (Expression<Func<T, bool>> filterExpression);
+         void Add(Shipments entity);
+        void Delete(Shipments entity);
+        void Update(Shipments entity);
+        Shipments? OrderByDescending<TKey>(Expression<Func<Shipments, TKey>> keySelector);
+         Shipments? GetFirstObject (Expression<Func<Shipments, bool>> filterExpression);
     }
 }
