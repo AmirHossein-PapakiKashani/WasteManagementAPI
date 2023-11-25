@@ -41,7 +41,7 @@ namespace WasteManagement.Application.Services.Service
             
             int convertToInt = Convert.ToInt32(recordwaste.CitizensId);
 
-            var query = _unitOfWork.Shipments.GetLastObject(x => x.CitizensId == convertToInt);
+            var query = _unitOfWork.Shipments.GetFirstObjectOrderByDescending(s => s.CitizensId == convertToInt);
            
             
             

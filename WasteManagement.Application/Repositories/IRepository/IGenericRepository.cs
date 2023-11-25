@@ -18,11 +18,9 @@ namespace WasteManagement.Application.Repositories.IRepository
 
         
 
-       IQueryable<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector);
-       T? GetFirstObject (Expression<Func<T, bool>> filterExpression);
-       IEnumerable<T> GetLastObject (Expression<Func<T, bool>> filterExpression);
-
-       IEnumerable<T> OrderByDescending(Expression<Func<T, bool>> filterExpression);
+        T? GetFirstObjectOrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector);
+        T? GetFirstObject (Expression<Func<T, bool>> filterExpression);
+       
 
       
     }

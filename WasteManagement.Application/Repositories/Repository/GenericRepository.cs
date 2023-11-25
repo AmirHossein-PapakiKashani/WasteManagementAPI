@@ -39,19 +39,10 @@ namespace WasteManagement.Application.Repositories.Repository
             return _dbContext.Set<T>().FirstOrDefault(filterExpression);
         }
 
-        public IEnumerable<T> GetLastObject(Expression<Func<T, bool>> filterExpression)
+        public T? GetFirstObjectOrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector)
         {
-            yield return _dbContext.Set<T>().FirstOrDefault(filterExpression);
-        }
+            return _dbContext.Set<T>().OrderByDescending(keySelector).FirstOrDefault();
 
-        public IEnumerable<T> OrderByDescending(Expression<Func<T, bool>> filterExpression)
-        {
-           return _dbContext.Set<T>().OrderByDescending(filterExpression);
-        }
-
-        public IQueryable<T> OrderByDescending<TKey>(Expression<Func<T, TKey>> keySelector)
-        {
-            return _dbContext.Set<T>().OrderByDescending(keySelector);
         }
 
         public void Update(T entity)
