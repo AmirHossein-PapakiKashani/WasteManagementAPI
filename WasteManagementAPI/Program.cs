@@ -9,6 +9,8 @@ using WasteManagementAPI.Models.Repositories.RepositoryService;
 using WasteManagement.Application.IUnitOfWork;
 using WasteManagement.Domain.Models.UnitOfWork;
 using WasteManagement.Application.Services.Service;
+using WasteManagement.Application.Repositories.IRepository;
+using WasteManagement.Application.Repositories.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -20,8 +22,12 @@ builder.Services.AddControllers();
 builder.Services.AddDbContext<WastMangementDbContext>(option => option.UseSqlServer(builder.Configuration.GetConnectionString("WastMangementDbContext")));
 
 //Services
+
 builder.Services.AddHttpContextAccessor();
+
 builder.Services.AddScoped<IUnitOfWorks, UnitOfWork>(); 
+builder.Services.AddScoped<IShipmentsRepository, ShipmentsRepostiory>();
+builder.Services.AddScoped<ICitizensRepository, CitizensRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IWasteService, WasteService>();
 
