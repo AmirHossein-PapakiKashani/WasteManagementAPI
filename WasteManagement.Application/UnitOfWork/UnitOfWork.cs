@@ -19,10 +19,10 @@ namespace WasteManagement.Domain.Models.UnitOfWork
 
         public ICitizensRepository Citizens {get; private set;}
 
-        public UnitOfWork(WastMangementDbContext dbContext)
+        public UnitOfWork(WastMangementDbContext dbContext , ShipmentsRepostiory shipmentsRepostiory)
         {
             _dbContext = dbContext;
-            Shipments = new ShipmentsRepostiory(_dbContext);
+            Shipments = shipmentsRepostiory;
             Citizens = new CitizensRepository(_dbContext);
         }
 
